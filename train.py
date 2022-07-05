@@ -80,6 +80,7 @@ def main() :
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=64, help='batch size')
     parser.add_argument('--epochs', type=int, default=10, help='number of training iterations')
+    parser.add_argument('--n_fold', type=int, default=5, help='train val fold number')
     parser.add_argument('--in_channel', type=int, default=1, help='number of channels')
     parser.add_argument('--img_size', type=int, default=28, help='input image size')
     parser.add_argument('--patch_size', type=int, default=4, help='patch size')
@@ -93,7 +94,7 @@ def main() :
     args = parser.parse_args()
 
     model = VIT(args.in_channel, args.img_size, args.patch_size, args.emb_dim, args.n_layers, args.num_heads, args.forward_dim, args.dropout_ratio, args.n_classes).to(device)
-    train_set, val_set, test_set = load_MNIST(args.batch_size, n_fold=5)
+    train_set, val_set, test_set = load_MNIST(args.batch_size, args.n_fold)
 
     train(args, model, train_set, val_set)
     test(args, model, test_set)
