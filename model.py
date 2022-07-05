@@ -4,8 +4,6 @@ from einops import rearrange, repeat
 from einops.layers.torch import Rearrange
 
 
-
-
 class image_embedding(nn.Module) :
   def __init__(self, in_channel: int, img_size: int, patch_size: int, emb_dim: int) :
     super().__init__()
