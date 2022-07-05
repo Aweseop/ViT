@@ -93,7 +93,8 @@ def main() :
 
     args = parser.parse_args()
 
-    model = VIT(args.in_channel, args.img_size, args.patch_size, args.emb_dim, args.n_layers, args.num_heads, args.forward_dim, args.dropout_ratio, args.n_classes).to(device)
+    model = VIT(args.batch_size, args.epochs, args.n_fold, args.in_channel, args.img_size, args.patch_size,
+                args.emb_dim, args.n_layers, args.num_heads, args.forward_dim, args.dropout_ratio, args.n_classes).to(device)
     train_set, val_set, test_set = load_MNIST(args.batch_size, args.n_fold)
 
     train(args, model, train_set, val_set)
