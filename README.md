@@ -4,11 +4,11 @@ This is a Pytorch reimplementation of Vision Transformer model in [An Image is W
 It aims to implement ViT simply using the MNIST dataset.
 More than 95% performance with 10 epochs.
 
-
 ---
 
 ## Model structure
 ![vit1](https://user-images.githubusercontent.com/87693860/177267676-bdfd308e-ed3b-4cba-857e-86462d45b6ad.PNG)
+
 
 ## Usage
 ```
@@ -18,8 +18,8 @@ python main.py --in_channel 1 --img_size 28 --patch_size 4 --emb_dim 4*4  \
 
 # It can be executed simply as follows
 bash train.sh
-
 ```
+
 
 ## Citations
 
