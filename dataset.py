@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data import sampler
 
 
-def load_MNIST(batch_size, n_fold: int = 5) :
+def load_MNIST(batch_size, n_fold) :
     transform = T.Compose([
                     T.ToTensor()
                 ])
