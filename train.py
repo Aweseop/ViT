@@ -84,7 +84,7 @@ def main() :
     parser.add_argument('--in_channel', type=int, default=1, help='number of channels')
     parser.add_argument('--img_size', type=int, default=28, help='input image size')
     parser.add_argument('--patch_size', type=int, default=4, help='patch size')
-    parser.add_argument('--emb_dim', type=int, default=4*4, help='Encoder embedding dimension')
+    parser.add_argument('--emb_dim', type=int, default=16, help='Encoder embedding dimension')
     parser.add_argument('--n_layers', type=float, default=6, help='number of encoder layers')
     parser.add_argument('--num_heads', type=int, default=2, help='number of multi-head attention heads')
     parser.add_argument('--forward_dim', type=int, default=4, help='MLP block embedding dimension')
