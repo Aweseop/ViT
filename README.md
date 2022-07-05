@@ -7,7 +7,7 @@ More than 95% performance with 10 epochs.
 ---
 
 ## Model structure
-![vit1](https://user-images.githubusercontent.com/87693860/177269462-f5b171dd-3ec9-410f-a396-bb284e2b3fd4.PNG)
+![vit1](https://user-images.githubusercontent.com/87693860/177269646-d06ddafe-e0e5-40c5-82e2-c3db9d2ec976.PNG)
 
 ## Usage
 ```
