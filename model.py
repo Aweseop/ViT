@@ -21,14 +21,14 @@ class image_embedding(nn.Module) :
     batch, _, _, _ = x.shape
 
     # patch flatten
-    x = self.rearrange(x)  # [bach_size, patch_num, patch_size * patch_size * in_channel]
+    x = self.rearrange(x)  # [batch_size, patch_num, patch_size * patch_size * in_channel]
 
     # patch embedding
-    x = self.linear(x)  # [bach_size, patch_num, emb_dim]
+    x = self.linear(x)  # [batch_size, patch_num, emb_dim]
 
-    c = repeat(self.cls_token, '() n d -> b n d', b=batch)  # [bach_size, patch_num, emb_dim]
-    x = torch.cat((c, x), dim=1)  # [bach_size, patch_num + 1, emb_dim]
-    x = x + self.positions  # [bach_size, patch_num + 1, emb_dim]
+    c = repeat(self.cls_token, '() n d -> b n d', b=batch)  # [batch_size, patch_num, emb_dim]
+    x = torch.cat((c, x), dim=1)  # [batch_size, patch_num + 1, emb_dim]
+    x = x + self.positions  # [batch_size, patch_num + 1, emb_dim]
 
     return x
 
@@ -105,13 +105,13 @@ class EncoderBlock(nn.Module) :
 
     def forward(self, x) :
         input = x
-        x = self.layer_norm(x)  # [bach_size, patch_num + 1, emb_dim]
-        x = self.msa(x)  # [bach_size, patch_num + 1, emb_dim]
-        x = x + input  # [bach_size, patch_num + 1, emb_dim]
+        x = self.layer_norm(x)  # [batch_size, patch_num + 1, emb_dim]
+        x = self.msa(x)  # [batch_size, patch_num + 1, emb_dim]
+        x = x + input  # [batch_size, patch_num + 1, emb_dim]
 
-        _x = self.layer_norm(x)  # [bach_size, patch_num + 1, emb_dim]
-        _x = self.mlp(_x)  # [bach_size, patch_num + 1, emb_dim]
-        x  = x + _x  # [bach_size, patch_num + 1, emb_dim]
+        _x = self.layer_norm(x)  # [batch_size, patch_num + 1, emb_dim]
+        _x = self.mlp(_x)  # [batch_size, patch_num + 1, emb_dim]
+        x  = x + _x  # [batch_size, patch_num + 1, emb_dim]
         
         return x
         
@@ -137,11 +137,11 @@ class VIT(nn.Module) :
     def forward(self, x) :
         # image embedding
         # x: [batch, channel, width, height]
-        x = self.embeding_module (x)  # [bach_size, patch_num + 1, emb_dim]
+        x = self.embeding_module (x)  # [batch_size, patch_num + 1, emb_dim]
 
         # transformer_encoder
         for enc in self.encoder_modules :
-          x = enc(x)  # [bach_size, patch_num + 1, emb_dim]
+          x = enc(x)  # [batch_size, patch_num + 1, emb_dim]
 
          # cls_token output 
         x = x[:, 0, :]  # [batch_size, emb_dim]
